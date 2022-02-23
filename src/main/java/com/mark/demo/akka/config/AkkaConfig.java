@@ -16,13 +16,14 @@ public class AkkaConfig {
 
     @Autowired
     private ApplicationContext applicationContext;
+    
     @Autowired
     private SpringExtension springExtension;
 
     @Bean
     public ActorSystem actorSystem() {
         ActorSystem actorSystem = ActorSystem.create("ActorSystem");
-        SpringExtension.SPRING_EXTENSION_PROVIDER.get(actorSystem).initialize(applicationContext);
+        springExtension.initialize(applicationContext);
         return actorSystem;
     }
 
